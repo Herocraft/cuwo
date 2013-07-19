@@ -38,10 +38,10 @@ irc_commandprefix = '.'
 irc_chatprefix = '#'
 
 # Randomly announce these messages
-autoAnnounceList = ["Don't hack - you will be banned!",
+auto_announce_list = ["Don't hack - you will be banned!",
     "Hackers will be banned",
     "We do not tolerate hackers",
     "If you cheat, you will be banned"]
     
 # Levelcap
-maxLevel = 300
+max_level = 300

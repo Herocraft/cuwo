@@ -2,11 +2,11 @@ from random import randrange
 from twisted.internet import task, reactor
 
 
-def autoAnnounce(script, config):
-    message = ' '.join(config.autoAnnounceList[randrange(
-        len(config.autoAnnounceList))])
-    script.connection.send_chat(message)
+def auto_announce(config):
+    message = ' '.join(config.auto_announce_list[randrange(
+        len(config.auto_announce_list))])
+    self.connection.send_chat(message)
 
-autoAnnounceTimer = task.LoopingCall(autoAnnounce)
-autoAnnounceTimer.start(240.0)
+auto_announce_timer = task.LoopingCall(autoAnnounce(config))
+auto_announce_timer.start(240.0)
 reactor.run()

@@ -184,10 +184,11 @@ class CubeWorldConnection(Protocol):
     # handlers
 
     def on_join(self):
-        if self.character_level > config.maxLevel:
+        player = get_player(self.server, self.name)
+        if player.character_level > config.max_level:
             message = 'You must be below level %s to join' % config.maxLevel
-            self.send_chat(message)
-            self.disconnect()
+            player.send_chat(message)
+            player.disconnect()
         else:
             print 'Player %s joined (IP %s)' % (self.name, self.address.host)
             for connection in self.server.connections.values():
