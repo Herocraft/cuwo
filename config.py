@@ -36,6 +36,7 @@ irc_channel = '#herocubechat'
 irc_password = None
 irc_commandprefix = '.'
 irc_chatprefix = '#'
+irc_nickserv_password = ''
 
 # Randomly announce these messages
 auto_announce_list = ["Don't hack - you will be banned!",

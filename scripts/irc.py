@@ -51,6 +51,7 @@ class IRCBot(irc.IRCClient):
         self.nickname = factory.nickname
 
     def signedOn(self):
+        self.parent.send('/msg NickServ IDENTIFY %s' % self.nickserv_password)
         self.join(self.factory.channel, self.factory.password)
     
     def joined(self, channel):
@@ -151,6 +152,7 @@ class IRCClientFactory(protocol.ClientFactory):
         self.commandprefix = config.irc_commandprefix
         self.chatprefix = config.irc_chatprefix
         self.password = config.irc_password
+        self.nickserv_password = config.irc_nickserv_password
     
     def startedConnecting(self, connector):
         print "Connecting to IRC server..."
