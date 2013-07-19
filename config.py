@@ -33,10 +33,10 @@ irc_nickname = 'hcbotz'
 irc_server = 'irc.esper.net'
 irc_port = 6667
 irc_channel = '#herocubechat'
-irc_password = 'IRCPASS'
+irc_password = 'IRCCHANNELPASS'
 irc_commandprefix = '.'
 irc_chatprefix = '#'
-irc_nickserv_password = 'NICKSERV'
+irc_nickserv_password = 'NICKSERVPASS'
 
 # Randomly announce these messages
 auto_announce_list = ["Don't hack - you will be banned!",
