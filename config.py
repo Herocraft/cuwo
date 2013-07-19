@@ -4,10 +4,10 @@
 server_name = 'Herocube'
 
 # Max number of players on the server at once
-max_players = 4
+max_players = 50
 
 # Seed for the server
-seed = 26879
+seed = 11223344
 
 # Time speed modifier, 1.0 is default
 time_modifier = 10.0
@@ -29,7 +29,7 @@ welcome = ["Welcome to %(server_name)s!",
            "(server powered by cuwo)"]
 
 # IRC script variables (enable by adding 'irc' to script list)
-irc_nickname = 'hcbot'
+irc_nickname = 'hcbotz'
 irc_server = 'irc.esper.net'
 irc_port = 6667
 irc_channel = '#herocubechat'
