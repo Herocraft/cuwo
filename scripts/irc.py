@@ -181,6 +181,7 @@ class IRCScriptProtocol(ConnectionScript):
     def on_chat(self, message):
         message = encode_irc('<%s><%s> %s' % (self.connection.host, self.connection.name, message))
         self.parent.send(message)
+
     def on_kill(self, target):
         self.parent.send('%s (%s) killed %s (%s)!' % encode_irc(
             self.connection.name, self.connection.host, target.name, target.host))
