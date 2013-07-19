@@ -18,9 +18,10 @@
 from cuwo.loader import Loader
 from cuwo.common import is_bit_set
 
-FLAGS_1_HOSTILE = 0x20
 
 class ItemUpgrade(Loader):
+    def reset(self):
+        pass
     def read(self, reader):
         self.x = reader.read_int8()
         self.y = reader.read_int8()
@@ -36,6 +37,8 @@ class ItemUpgrade(Loader):
         writer.write_uint32(self.level)
     
 class ItemData(Loader):
+    def reset(self):
+        pass
     def read(self, reader):
         self.type = reader.read_uint8()
         self.sub_type = reader.read_uint8()
@@ -72,6 +75,8 @@ class ItemData(Loader):
         writer.write_uint32(self.upgrade_count)
     
 class AppearanceData(Loader):
+    def reset(self):
+        pass
     def read(self, reader):
         self.not_used_1 = reader.read_uint8()
         self.not_used_2 = reader.read_uint8()
@@ -158,7 +163,11 @@ class AppearanceData(Loader):
         writer.write_vec3(self.back_offset)
         writer.write_vec3(self.wing_offset)
     
+FLAGS_1_HOSTILE = 0x20    
+    
 class EntityData(Loader):
+    def reset(self):
+        pass
     def read(self, reader):
         self.x = reader.read_int64()
         self.y = reader.read_int64()
