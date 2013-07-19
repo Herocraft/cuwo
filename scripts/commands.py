@@ -107,3 +107,10 @@ def kill(script, name):
     message = '%s was killed' % player.name
     print message
     script.server.send_chat(message)
+	
+@command
+@admin
+def getip(script, name):
+    player = get_player(script.server, name)
+    playerIP = player.connection.host
+    return playerIP
