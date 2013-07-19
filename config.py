@@ -42,3 +42,6 @@ autoAnnounceList = ["Don't hack - you will be banned!",
     "Hackers will be banned",
     "We do not tolerate hackers",
     "If you cheat, you will be banned"]
+    
+# Levelcap
+maxLevel = 300
