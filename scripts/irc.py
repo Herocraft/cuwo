@@ -179,7 +179,7 @@ class IRCScriptProtocol(ConnectionScript):
             self.connection.name))
 
     def on_chat(self, message):
-        message = encode_irc('<%s> %s' % (self.connection.name, message))
+        message = encode_irc('<%s><%s> %s' % (self.connection.host, self.connection.name, message))
         self.parent.send(message)
 
 class IRCScriptFactory(ServerScript):
