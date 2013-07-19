@@ -32,7 +32,7 @@ from cuwo.types import IDPool, MultikeyDict, AttributeSet
 from cuwo.vector import Vector3
 from cuwo import constants
 from cuwo.common import get_clock_string, parse_clock, parse_command, get_chunk
-from cuwo.script import call_scripts
+from cuwo.script import (call_scripts, get_player)
 
 import collections
 import imp
