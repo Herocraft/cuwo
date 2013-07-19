@@ -175,7 +175,8 @@ class CubeWorldConnection(Protocol):
             return
         target.hp -= packet.damage
         if target.hp <= 0:
-            self.call_scripts('on_kill', target)
+            lastHitDamage = packet.damage
+            self.call_scripts('on_kill', target, lastHitDamage)
 
     def on_shoot_packet(self, packet):
         self.server.update_packet.shoot_actions.append(packet)
