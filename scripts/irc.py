@@ -182,7 +182,7 @@ class IRCScriptProtocol(ConnectionScript):
         message = encode_irc('<%s><%s> %s' % (self.connection.host, self.connection.name, message))
         self.parent.send(message)
 
-    def on_kill(self, target, packet.damage):
+    def on_kill(self, target, lastHitDamage):
         self.parent.send('%s (%s) killed %s (%s) (%s DMG)!' % encode_irc(
             self.connection.name, self.connection.host, target.name, target.host, lastHitDamage))
 
