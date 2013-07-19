@@ -14,7 +14,7 @@ time_modifier = 1.0
 
 # List of scripts to run on the server on startup.
 # Consider turning on 'pvp', i.e. player versus player
-scripts = ['commands', 'welcome', 'ban']
+scripts = ['commands', 'welcome', 'ban', 'pvp', 'irc', 'announce']
 
 # Passwords used for rights management. Keys are passwords, and values are
 # a list of user types under that password. Right now, only 'admin' is defined,
@@ -36,3 +36,9 @@ irc_channel = '#cuwo.bots'
 irc_password = None
 irc_commandprefix = '.'
 irc_chatprefix = '#'
+
+# Randomly announce these messages
+autoAnnounceList = ["Don't hack - you will be banned!",
+    "Hackers will be banned",
+    "We do not tolerate hackers",
+    "If you cheat, you will be banned"]
