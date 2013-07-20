@@ -60,9 +60,18 @@ class BanServer(ServerScript):
 def get_class():
     return BanServer
 
+@irc
 @command
 @admin
 def ban(script, name, *args):
     player = get_player(script.server, name)
+    reason = ' '.join(args) or DEFAULT_REASON
+    script.parent.ban(player.address.host, reason)
+
+@irc
+@command
+@admin
+def banid(script, entity_id, *args):
+    player = get_player(script.server, entity_id)
     reason = ' '.join(args) or DEFAULT_REASON
     script.parent.ban(player.address.host, reason)
