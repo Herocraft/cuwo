@@ -7,6 +7,6 @@ def auto_announce(config):
         len(config.auto_announce_list))])
     self.connection.send_chat(message)
 
-auto_announce_timer = task.LoopingCall(autoAnnounce(config))
+auto_announce_timer = task.LoopingCall(auto_announce(config))
 auto_announce_timer.start(240.0)
 reactor.run()
