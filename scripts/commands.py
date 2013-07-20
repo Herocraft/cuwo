@@ -38,6 +38,7 @@ def say(script, *args):
     message = ' '.join(args)
     script.connection.send_chat(message)
 
+@irc
 @command
 def server(script):
     msg = 'Server is running on %r' % platform.system()
@@ -46,6 +47,7 @@ def server(script):
         msg += ', revision %s' % revision
     return msg
 
+@irc
 @command
 def login(script, password):
     password = password.lower()
@@ -54,13 +56,17 @@ def login(script, password):
         return 'Invalid password'
     script.connection.rights.update(user_types)
     return 'Logged in as %s' % (', '.join(user_types))
+    print('%s logged in as %s' % (script.connection.name, ', '.join(user_types)))
+    bot.me('%s logged in as %s' % (script.connection.name, ', '.join(user_types)))
 
+@irc
 @command
 @admin
 def kick(script, name):
     player = get_player(script.server, name)
     player.kick()
 
+@irc
 @command
 @admin
 def setclock(script, value):
@@ -70,6 +76,7 @@ def setclock(script, value):
         return 'Invalid clock specified'
     return 'Clock set to %s' % value
 
+@irc
 @command
 def whereis(script, name = None):
     if name is None:
@@ -80,13 +87,17 @@ def whereis(script, name = None):
         message = '%s is at %%s' % player.name
     return message % (get_chunk(player.position),)
 
+@irc
 @command
 def pm(script, name, *args):
     player = get_player(script.server, name)
     message = ' '.join(args)
     player.send_chat('%s (PM): %s' % (script.connection.name, message))
-    return 'PM sent'
-    
+    print '%s to %s (PM): %s' % (script.connection.name, player.name, message)
+    return 'PM sent to player.name'
+    bot.me('%s to %s (PM): %s' % (script.connection.name, player.name, message))
+
+@irc    
 @command
 @admin
 def kill(script, name):
@@ -106,8 +117,10 @@ def kill(script, name):
     script.server.update_packet.player_hits.append(packet)
     message = '%s was killed' % player.name
     print message
+    bot.me(message)
     script.server.send_chat(message)
-	
+
+@irc
 @command
 @admin
 def getip(script, name):
