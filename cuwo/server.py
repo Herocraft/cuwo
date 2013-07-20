@@ -232,7 +232,9 @@ class CubeWorldConnection(Protocol):
     def kick(self):
         self.send_chat('You have been kicked')
         self.disconnect()
-        self.server.send_chat('%s has been kicked' % self.name)
+        self.server.send_chat('%s has been kicked' % self.name
+        print '%s has been kicked' % self.name
+        bot.me('%s has been kicked' % self.name)
 
     def call_scripts(self, name, *arg, **kw):
         return call_scripts(self.scripts, name, *arg, **kw)
