@@ -19,24 +19,27 @@
 Default set of commands bundled with cuwo
 """
 
-from cuwo.script import (ServerScript, ConnectionScript, command, get_player,
-    admin)
+from cuwo.script import ServerScript, command, get_player, admin
 from cuwo.common import get_chunk
-from cuwo.packet import (HitPacket, HIT_NORMAL)
+from cuwo.packet import HitPacket, HIT_NORMAL
 from cuwo.vector import Vector3
 import platform
+
 
 class CommandServer(ServerScript):
     pass
 
+
 def get_class():
     return CommandServer
+
 
 @command
 @admin
 def say(script, *args):
     message = ' '.join(args)
     script.connection.send_chat(message)
+
 
 @irc
 @command
@@ -47,6 +50,7 @@ def server(script):
         msg += ', revision %s' % revision
     return msg
 
+
 @irc
 @command
 def login(script, password):
@@ -56,8 +60,7 @@ def login(script, password):
         return 'Invalid password'
     script.connection.rights.update(user_types)
     return 'Logged in as %s' % (', '.join(user_types))
-    print('%s logged in as %s' % (script.connection.name, ', '.join(user_types)))
-    bot.me('%s logged in as %s' % (script.connection.name, ', '.join(user_types)))
+
 
 @irc
 @command
@@ -65,6 +68,7 @@ def login(script, password):
 def kick(script, name):
     player = get_player(script.server, name)
     player.kick()
+
 
 @irc
 @command
@@ -76,9 +80,10 @@ def setclock(script, value):
         return 'Invalid clock specified'
     return 'Clock set to %s' % value
 
+
 @irc
 @command
-def whereis(script, name = None):
+def whereis(script, name=None):
     if name is None:
         player = script.connection
         message = 'You are at %s'
@@ -87,7 +92,7 @@ def whereis(script, name = None):
         message = '%s is at %%s' % player.name
     return message % (get_chunk(player.position),)
 
-@irc
+
 @command
 def pm(script, name, *args):
     player = get_player(script.server, name)
@@ -96,6 +101,7 @@ def pm(script, name, *args):
     print '%s to %s (PM): %s' % (script.connection.name, player.name, message)
     return 'PM sent to player.name'
     bot.me('%s to %s (PM): %s' % (script.connection.name, player.name, message))
+
 
 def damage_player(script, player, damage=0, stun_duration=0):
     packet = HitPacket()
@@ -112,6 +118,7 @@ def damage_player(script, player, damage=0, stun_duration=0):
     packet.show_light = 0
     script.server.update_packet.player_hits.append(packet)
 
+
 @irc
 @command
 @admin
@@ -121,6 +128,8 @@ def kill(script, name):
     message = '%s was killed' % player.name
     print message
     script.server.send_chat(message)
+    bot.me(message)
+
 
 @irc
 @command
@@ -131,7 +140,9 @@ def stun(script, name, stun_duration=500):
     message = '%s was stunned' % player.name
     print message
     script.server.send_chat(message)
-    
+    bot.me(message)
+
+
 @irc
 @command
 @admin
